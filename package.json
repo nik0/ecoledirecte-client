@@ -1,6 +1,6 @@
 {
   "name": "ecoledirecte-client",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Node Module for interact with ecole-directe api",
   "main": "./src/index.js",
   "repository": {

@@ -2,9 +2,9 @@ const endpoints = require("./endpoints");
 const Student = require("./models/student");
 
 class Api {
-    constructor(token, profile) {
-        this.token = token;
-        this.profile = profile;
+    constructor(loginAnswer) {
+        this.token = loginAnswer.token;
+        this.profile = loginAnswer.profile;
     }
 
     async getProfile() {
