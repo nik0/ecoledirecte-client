@@ -1,15 +1,20 @@
 {
-  "name": "ecoledirecte-api",
-  "version": "0.0.1",
+  "name": "ecoledirecte-client",
+  "version": "1.0.1",
   "description": "Node Module for interact with ecole-directe api",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pierre-ebl/ecoledirecte-client"
+  },
   "scripts": {
     "test": "node ./test/index.js"
   },
+  "keywords": ["ecoledirecte", "api", "nodejs"],
   "author": "Pierre Ebele",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^16.4.7",
-    "fs": "^0.0.1-security"
+    "fs": "^0.0.1-security",
+    "dotenv": "^16.4.7"
   }
 }

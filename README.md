@@ -1,14 +1,14 @@
-# ecoledirecte-api
+# ecoledirecte-client
  Node Module to interact with ecole-directe api
 
 ## Installation
 
 ```bash
-npm install ecoledirecte-api
+npm install ecoledirecte-client
 ```
 
 ## Usage
 
 ```javascript
-const { Auth, Api } = require("ecoledirecte-api");
+const { Auth, Api } = require("ecoledirecte-client");
 ```
