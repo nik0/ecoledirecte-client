@@ -5,4 +5,6 @@ module.exports = {
     NOTES: `${BASE_URL}/eleves/{id}/notes.awp?verbe=get&v=${VERSION}`,
     GET_QUESTIONS: `${BASE_URL}/connexion/doubleauth.awp?verbe=get&v=${VERSION}`,
     ANSWER_QUESTIONS: `${BASE_URL}/connexion/doubleauth.awp?verbe=post&v=${VERSION}`,
+    HOMEWORKS: `${BASE_URL}/Eleves/{id}/cahierdetexte.awp?verbe=get&v=${VERSION}`,
+    HOMEWORK_DAY: `${BASE_URL}/Eleves/{id}/cahierdetexte/{day}.awp?verbe=get&v=${VERSION}`,
 };

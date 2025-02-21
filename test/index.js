@@ -25,7 +25,17 @@ async function main() {
             //console.log(notes);
         });
 
+        const homeworksDay = await api.getHomeworksDay(students[0].getId());
+        homeworksDay.forEach(async (homeworkDay) => {
+            console.log("Date : " + homeworkDay.getDate() + " - Nombre de devoirs : " + homeworkDay.getSize());
+            // const homeworks = await homeworkDay.getMore();
+            // console.log(homeworks);
+        });
         
+        let homeworks = await homeworksDay[0].getMore();
+        homeworks.forEach(async (homework) => {
+            console.log(homework.getMatiere() + " - " + homework.getDescription() + " - " + homework.isDone());
+        });
     } catch (error) {
         console.error(error.message);
     }

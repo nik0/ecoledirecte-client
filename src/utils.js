@@ -12,9 +12,19 @@ function encodeBase64(str) {
     return Buffer.from(str).toString('base64');
 }
 
+function isHTML(str) {
+    return /<\/?[a-z][\s\S]*>/i.test(str);
+}
+
+function removeParagraphTags(str) {
+    return str.trim().replace(/^<p>/, '').replace(/<\/p>$/, '');
+  }
+  
 
 module.exports = {
     encodeString,
     decodeBase64,
-    encodeBase64
+    encodeBase64,
+    isHTML,
+    removeParagraphTags
 }

@@ -21,8 +21,12 @@ class Student {
         return this.class.libelle;
     }
 
-    getNotes() {    
+    async getNotes() {    
         return this.api.getNotes(this.id);
+    }
+
+    async getHomeworks() {
+        return this.api.getHomeworks(this.id);
     }
 }
 

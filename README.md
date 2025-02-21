@@ -74,6 +74,47 @@ async function getNotesExample() {
 getNotesExample();
 ```
 
+---
+
+### **📌 Get the homeworks day of a student**
+```javascript
+async function getHomeworksExample() {
+    const token = await Auth.login("identifiant", "motdepasse");
+    const api = new Api(token);
+
+    const students = await api.getStudents();
+    if (students.length > 0) {
+        const firstStudent = students[0];
+        const homeworksDay = await firstStudent.getHomeworksDay();
+        console.log(homeworksDay);
+    }
+}
+
+getHomeworksExample();
+``` 
+
+---
+
+### **📌 Get the homeworks of a day**
+```javascript
+async function getHomeworksExample() {
+    const token = await Auth.login("identifiant", "motdepasse");
+    const api = new Api(token);
+
+    const students = await api.getStudents();
+    if (students.length > 0) {
+        const firstStudent = students[0];
+        const homeworksDay = await firstStudent.getHomeworksDay();
+        if (homeworksDay.length > 0) {
+            const firstHomeworksDay = homeworksDay[0];
+            const homeworks = await firstHomeworksDay.getMore();
+            console.log(homeworks);
+        }
+    }   
+}
+
+getHomeworksExample();
+```
 
 ---
 
