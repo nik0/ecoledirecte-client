@@ -1,0 +1,14 @@
+{
+  "name": "ecoledirecte-api",
+  "version": "0.0.1",
+  "description": "Node Module for interact with ecole-directe api",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./test/index.js"
+  },
+  "author": "Pierre Ebele",
+  "license": "ISC",
+  "dependencies": {
+    "fs": "^0.0.1-security"
+  }
+}
