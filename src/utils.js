@@ -17,7 +17,8 @@ function isHTML(str) {
 }
 
 function removeParagraphTags(str) {
-    return str.trim().replace(/^<p>/, '').replace(/<\/p>$/, '');
+    return str.trim().replace(/^<p>/, '').replace(/<\/p>$/, '').replace(/<a>/g, '').replace(/<\/a>/g, '');
+    
   }
   
 
