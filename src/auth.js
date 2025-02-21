@@ -1,13 +1,14 @@
 const fs = require("fs");
 const endpoints = require("./endpoints");
 const { encodeString, decodeBase64, encodeBase64 } = require("./utils");
+const { log } = require("console");
 
 class Auth {
     constructor(questionsFile = null) {
         this.questionsFile = questionsFile;
         this.questionsAnswers = this.loadQuestions();
     }
-
+    
     loadQuestions() {
         if (this.questionsFile && fs.existsSync(this.questionsFile)) {
             try {
@@ -42,17 +43,15 @@ class Auth {
                 body: loginData
             });
             const data = await response.json();
-            console.log(data.code);
             if (data.code === 200) {
-                console.log(data.data.token);
-                console.log("C'est bon");
-                return data.data.token;
+                return {
+                    token: data.token,
+                    profile: data.data.accounts[0]
+                };
             } else if (data.code === 250) {
-                console.log("Authentification renforcée requise.");
                 const questionToken = data.token;
                 let question = await this.getQuestion(questionToken);
-                
-                let answer = await this.getAnswer(decodeBase64(question), this.loadQuestions());
+                let answer = await this.getAnswer(decodeBase64(question), await this.loadQuestions());
 
                 if (!answer) {
                     console.log("⚠️  Réponse non trouvée dans le fichier");
@@ -70,7 +69,7 @@ class Auth {
 
     async getQuestion(questionToken) {
         try {
-            const response = await fetch(endpoints.QUESTIONS + "?verbe=get&v=4.72.0", {
+            const response = await fetch(endpoints.GET_QUESTIONS, {
                 method: 'POST',
                 headers: {
                     'x-token': questionToken
@@ -98,14 +97,14 @@ class Auth {
             });
     
             const data = await response.json();
-            console.log(data);
     
             if (data.code === 200) {
                 const cn = data.data.cn; 
                 const cv = data.data.cv;    
-                console.log('Bypassed a2f ' + cn + ' ' + cv);
                 return await this.login(this.username, this.password, cn, cv); 
             } else {
+                console.log(data);
+                console.log(answer);
                 throw new Error("Réponse incorrecte.");
             }
         } catch (error) {

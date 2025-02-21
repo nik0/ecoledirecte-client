@@ -5,15 +5,29 @@ dotenv.config();
 
 async function main() {
     try {
+        const auth = new Auth("./test/questions.json");
+        const loginResponse = await auth.login(process.env.USER, process.env.PASSWORD);
         
-        const auth = new Auth("questions.json"); // Charge le fichier des réponses
-        const token = await auth.login(process.env.USER, process.env.PASSWORD);
-        
-        console.log("Connexion réussie, token :", token);
+        console.log("Connexion réussie, token :", loginResponse.token);
 
-        const api = new Api(token);
+        const api = new Api(loginResponse.token, loginResponse.profile);
         const profile = await api.getProfile();
-        console.log(profile);
+        
+        console.log("Informations du profil :");
+        console.log("Nom :", profile.nom);
+        console.log("Prénom :", profile.prenom);
+        console.log("Type de compte :", profile.typeCompte);
+        
+        const students = await api.getStudents();
+        console.log("Liste des étudiants :");
+        
+        students.forEach(async (student) => {
+            console.log(`${student.getFullName()} - Classe : ${student.getClass()}`);
+            const notes = await student.getNotes();
+            console.log(notes);
+        });
+
+        
     } catch (error) {
         console.error(error.message);
     }

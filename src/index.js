@@ -1,4 +1,4 @@
-const Auth = require("./auth");
-const Api = require("./api");
+const Auth = require("./Auth");
+const Api = require("./Api");
 
 module.exports = { Auth, Api };
